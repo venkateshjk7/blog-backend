@@ -21,6 +21,9 @@ public class BlogService {
     @Autowired
     private StorageService storageService;
 
+    @Autowired
+    private CloudinaryService cloudinaryService;
+
     public List<Post> getAllPosts() {
         return repository.findAll();
     }
@@ -32,7 +35,8 @@ public class BlogService {
         post.setEmail(email);
 
         // Save image and set URL
-        String imageUrl = storageService.save(image);
+        //String imageUrl = storageService.save(image);
+        String imageUrl = cloudinaryService.uploadFile(image);
         post.setImageUrl(imageUrl);
 
         return repository.save(post);
