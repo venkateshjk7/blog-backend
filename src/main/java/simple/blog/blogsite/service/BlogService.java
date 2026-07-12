@@ -54,7 +54,7 @@ public class BlogService {
         existing.setTitle(title);
         existing.setDescription(description);
 
-        if (imageFile != null && !imageFile.isEmpty()) {
+       /*if (imageFile != null && !imageFile.isEmpty()) {
             try {
                 // Save file to a folder (e.g., "uploads") and store the path/URL
                 String fileName = UUID.randomUUID() + "_" + imageFile.getOriginalFilename();
@@ -63,8 +63,23 @@ public class BlogService {
 
                 // Store the relative path or URL in the entity
                 existing.setImageUrl(path.toString());
+
             } catch (IOException e) {
                 throw new RuntimeException("Failed to process image", e);
+            }
+        }*/
+
+        if (imageFile != null && !imageFile.isEmpty()) {
+
+            try {
+
+                String imageUrl = cloudinaryService.uploadFile(imageFile);
+
+                existing.setImageUrl(imageUrl);
+
+            } catch (IOException e) {
+
+                throw new RuntimeException("Image upload failed", e);
             }
         }
 

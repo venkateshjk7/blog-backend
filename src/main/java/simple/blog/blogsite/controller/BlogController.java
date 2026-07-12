@@ -17,7 +17,7 @@ public class BlogController {
     @Autowired
     private BlogService service;
 
-    @GetMapping
+    /*@GetMapping
     public ResponseEntity<List<Post>> getPosts() {
         List<Post> posts = service.getAllPosts();
         posts.forEach(post -> {
@@ -28,6 +28,11 @@ public class BlogController {
             }
         });
         return ResponseEntity.ok(posts);
+    }*/
+
+    @GetMapping
+    public ResponseEntity<List<Post>> getPosts() {
+        return ResponseEntity.ok(service.getAllPosts());
     }
 
 
