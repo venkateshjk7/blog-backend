@@ -37,12 +37,10 @@ public class JwtFilter extends OncePerRequestFilter {
 
         filterChain.doFilter(request, response);
 
-    } catch (Exception e) {
-        System.out.println(e.getMessage());
-        throw new RuntimeException(e.getMessage());
+    }
+    catch (Exception e) {
         e.printStackTrace();
-        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid JWT");
-        return;
+        throw new RuntimeException(e);
     }
     }
 }
