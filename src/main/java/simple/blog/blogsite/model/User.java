@@ -17,8 +17,9 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+    @Column(unique = true, nullable = false)
     @Email
-    String email;
+    private String email;
     String provider; // e.g. "GOOGLE", "GITHUB"
     String mobileNumber;
     String password;
