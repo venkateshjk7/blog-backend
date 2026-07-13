@@ -70,7 +70,8 @@ public class SecurityConfig {
                 .oauth2Login(oauth -> oauth
                         .userInfoEndpoint(userInfo -> userInfo.userService(customOAuth2UserService))
                         //.defaultSuccessUrl("http://localhost:5500/index.html", true)// 👈 force login.html
-                       .failureUrl("http://localhost:5500/home.html")
+                       //.failureUrl("http://localhost:5500/home.html")
+                        .failureUrl("https://blog-frontend-pi-pearl.vercel.app/home.html")
                         .successHandler(oAuth2LoginSuccessHandler)   // ✅ use custom handler
                 )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
@@ -84,7 +85,8 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration configuration = new CorsConfiguration();
         // Restrict origins when credentials are allowed; adjust to match your frontend origin(s)
-        configuration.setAllowedOrigins(List.of("*"));
+        //configuration.setAllowedOrigins(List.of("*"));
+        configuration.setAllowedOrigins(List.of("http://localhost:5500", "https://blog-frontend-pi-pearl.vercel.app"));
         // include OPTIONS to allow CORS preflight from browsers
         configuration.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization","Content-Type","Accept"));

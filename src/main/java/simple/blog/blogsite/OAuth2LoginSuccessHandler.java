@@ -39,10 +39,12 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
         String token = jwtUtil.generateToken(email);
         if (token.isEmpty()) {
             // If user came from register page → send them to login.html
-            response.sendRedirect("http://localhost:5500/login.html");
+            //response.sendRedirect("http://localhost:5500/login.html");
+            response.sendRedirect("https://blog-frontend-pi-pearl.vercel.app/login.html");
         }
         else {
-           String redirectUrl = "http://localhost:5500/home.html?email=" +
+           //String redirectUrl = "http://localhost:5500/home.html?email=" +
+            String redirectUrl = "https://blog-frontend-pi-pearl.vercel.app/home.html?email=" +
                     URLEncoder.encode(email, StandardCharsets.UTF_8) +
                     "&token=" +
                     URLEncoder.encode(token, StandardCharsets.UTF_8);
